@@ -1,0 +1,6 @@
+{
+  "name": "হিসাব অ্যাপ",
+  "description": "ভেটেরিনারি ফার্মেসি ও অ্যাগ্রোভেট দোকানের জন্য বিক্রয় (POS), ইনভেন্টরি, বাকি খাতা ও ক্যাশবুক হিসাব অ্যাপ",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

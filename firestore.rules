@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only the authenticated shop owner can access and modify their shop data
+    match /shops/{shopId} {
+      allow read, write: if request.auth != null && request.auth.uid == shopId;
+
+      match /{subcollection}/{document=**} {
+        allow read, write: if request.auth != null && request.auth.uid == shopId;
+      }
+    }
+
+    // Deny all other access by default (Zero-Trust)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

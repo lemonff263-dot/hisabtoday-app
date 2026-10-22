@@ -1,0 +1,10 @@
+# Gradle build and cache
+.gradle/
+.kotlin/
+.build-outputs/
+build/
+app/build/
+*.iml
+.idea/
+.DS_Store
+*.log

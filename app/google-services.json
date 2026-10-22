@@ -1,0 +1,34 @@
+{
+  "project_info": {
+    "project_number": "100617697699",
+    "project_id": "limonr-78ab2",
+    "storage_bucket": "limonr-78ab2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100617697699:android:70ba7e2c96f71f516ec216",
+        "android_client_info": {
+          "package_name": "com.aistudio.hishabapp.lmzqrv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100617697699-b41enmrhrf24vbaeuu5tlsa5gecli1b1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_H7mxim8R3wEEni7gOq026bn5w3L9yl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
