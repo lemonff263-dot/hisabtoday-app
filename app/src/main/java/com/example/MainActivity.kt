@@ -36,26 +36,35 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        window.decorView.setBackgroundColor(android.graphics.Color.parseColor("#065F46"))
+
         webView = WebView(this).apply {
+            setBackgroundColor(android.graphics.Color.parseColor("#F8FAFC"))
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
                 databaseEnabled = true
                 allowFileAccess = true
                 allowContentAccess = true
-                allowFileAccessFromFileURLs = false
-                allowUniversalAccessFromFileURLs = false
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
                 loadsImagesAutomatically = true
                 useWideViewPort = true
                 loadWithOverviewMode = true
+                javaScriptCanOpenWindowsAutomatically = true
                 mediaPlaybackRequiresUserGesture = false
                 cacheMode = WebSettings.LOAD_DEFAULT
+                mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    safeBrowsingEnabled = true
+                    safeBrowsingEnabled = false
                 }
             }
 
             webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                }
+
                 override fun onRenderProcessGone(view: WebView?, detail: android.webkit.RenderProcessGoneDetail?): Boolean {
                     // Prevent process crash from bringing down the entire activity
                     return true
