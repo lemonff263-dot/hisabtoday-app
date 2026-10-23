@@ -8,3 +8,4 @@ app/build/
 .idea/
 .DS_Store
 *.log
+.aistudio/
