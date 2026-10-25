@@ -55,6 +55,10 @@ android {
         compose = true
         buildConfig = true
     }
+
+    androidResources {
+        noCompress += listOf("woff2", "ttf", "woff")
+    }
 }
 
 dependencies {

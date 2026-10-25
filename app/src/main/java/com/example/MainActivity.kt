@@ -17,6 +17,7 @@ import android.print.PrintAttributes
 import android.print.PrintManager
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.JavascriptInterface
@@ -164,6 +165,32 @@ class MainActivity : ComponentActivity() {
                     request: WebResourceRequest?
                 ): WebResourceResponse? {
                     val url = request?.url ?: return null
+                    val path = url.path ?: ""
+                    if (path.endsWith(".woff2")) {
+                        try {
+                            val assetPath = path.removePrefix("/assets/")
+                            val inputStream = assets.open(assetPath)
+                            val headers = mapOf(
+                                "Access-Control-Allow-Origin" to "*",
+                                "Content-Type" to "font/woff2"
+                            )
+                            return WebResourceResponse("font/woff2", "binary", 200, "OK", headers, inputStream)
+                        } catch (e: Exception) {
+                            Log.e("MainActivity", "Error serving font woff2: $path", e)
+                        }
+                    } else if (path.endsWith(".ttf")) {
+                        try {
+                            val assetPath = path.removePrefix("/assets/")
+                            val inputStream = assets.open(assetPath)
+                            val headers = mapOf(
+                                "Access-Control-Allow-Origin" to "*",
+                                "Content-Type" to "font/ttf"
+                            )
+                            return WebResourceResponse("font/ttf", "binary", 200, "OK", headers, inputStream)
+                        } catch (e: Exception) {
+                            Log.e("MainActivity", "Error serving font ttf: $path", e)
+                        }
+                    }
                     return assetLoader.shouldInterceptRequest(url)
                 }
 
