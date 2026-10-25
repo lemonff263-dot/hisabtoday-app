@@ -348,7 +348,11 @@ class MainActivity : ComponentActivity() {
         fun downloadFile(base64Data: String, fileName: String, mimeType: String) {
             activity.runOnUiThread {
                 try {
-                    val bytes = Base64.decode(base64Data, Base64.DEFAULT)
+                    val bytes = try {
+                        Base64.decode(base64Data, Base64.DEFAULT)
+                    } catch (e: Exception) {
+                        base64Data.toByteArray(Charsets.UTF_8)
+                    }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         val resolver = activity.contentResolver
                         val contentValues = ContentValues().apply {
@@ -386,7 +390,11 @@ class MainActivity : ComponentActivity() {
         fun shareFile(base64Data: String, fileName: String, mimeType: String) {
             activity.runOnUiThread {
                 try {
-                    val bytes = Base64.decode(base64Data, Base64.DEFAULT)
+                    val bytes = try {
+                        Base64.decode(base64Data, Base64.DEFAULT)
+                    } catch (e: Exception) {
+                        base64Data.toByteArray(Charsets.UTF_8)
+                    }
                     val shareDir = File(activity.cacheDir, "shared_files").apply { mkdirs() }
                     val file = File(shareDir, fileName)
                     FileOutputStream(file).use { it.write(bytes) }
